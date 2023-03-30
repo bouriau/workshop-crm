@@ -1,0 +1,11 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Liste Prospects</h1>
+
+    <ul>
+        {% for prospect in prospects %}
+            <li>prospect.firstname</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
