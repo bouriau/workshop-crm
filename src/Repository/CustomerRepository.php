@@ -14,4 +14,10 @@ class CustomerRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Customer::class);
     }
+
+    public function save(Customer $customer)
+    {
+        $this->_em->persist($customer);
+        $this->_em->flush();
+    }
 }

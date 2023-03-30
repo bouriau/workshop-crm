@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+    <h1>Liste Customers</h1>
+
+    <ul>
+        {% for customer in customers %}
+            <li>{{customer.id}}</li>
+            <li>Prenom :{{customer.firstname}}</li>
+            <li>Nom : {{ customer.lastname }}</li>
+            <li>Email : {{ customer.email }}</li>
+            <li>Tel : {{ customer.phone }}</li>
+            <hr align="left" width="10%">
+        {% endfor %}
+    </ul>
+{% endblock %}

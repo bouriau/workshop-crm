@@ -1,0 +1,14 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+    <h1>Le Customer d'id {{ customer.id }} :</h1>
+
+    <ul>
+        <li>{{customer.id}}</li>
+        <li>Prenom :{{customer.firstname}}</li>
+        <li>Nom : {{ customer.lastname }}</li>
+        <li>Email : {{ customer.email }}</li>
+        <li>Tel : {{ customer.phone }}</li>
+    </ul>
+{% endblock %}

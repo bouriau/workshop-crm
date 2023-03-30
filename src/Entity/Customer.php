@@ -20,7 +20,7 @@ use Doctrine\ORM\Mapping\Table;
 class Customer extends AbstractContact
 {
     #[Id]
-    #[GeneratedValue]
+    #[GeneratedValue(strategy: 'AUTO')]
     #[Column]
     private ?int $id = null;
 
