@@ -5,7 +5,7 @@
 
     <ul>
         {% for prospect in prospects %}
-            <li>prospect.firstname</li>
+            <li><a href='prospect/{{prospect.id}}'>{{prospect.firstname}}</li>
         {% endfor %}
     </ul>
 {% endblock %}

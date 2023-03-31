@@ -14,4 +14,10 @@ class ProspectRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Prospect::class);
     }
+    
+    public function save(Prospect $prospect)
+    {
+        $this->_em->persist($prospect);
+        $this->_em->flush();
+    }
 }

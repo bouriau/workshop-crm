@@ -2,11 +2,12 @@
 
 {% block content %}
     <h1>Détail Prospect</h1>
+    <h2> <a href='https://localhost/prospects'>Retour à la liste</h2>
 
     <ul>
-        {{prospect.firstname}}
-        {{prospect.name}}
-        {{prospect.phone}}
-        {{prospect.email}}
+        <li>{{prospect.firstname}}</li>
+        <li>{{prospect.lastname}}</li>
+        <li>{{prospect.phone}}</li>
+        <li>{{prospect.email}}</li>
     </ul>
 {% endblock %}
