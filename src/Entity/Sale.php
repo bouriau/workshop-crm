@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Entity\Traits\TimestampableTrait;
 use App\Repository\SaleRepository;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -17,6 +18,8 @@ use Doctrine\ORM\Mapping\Table;
 #[Entity(repositoryClass: SaleRepository::class)]
 class Sale
 {
+    use TimestampableTrait;
+
     #[Id]
     #[GeneratedValue]
     #[Column]
@@ -31,15 +34,17 @@ class Sale
     #[Column(type: "decimal", nullable: false)]
     private float $price;
 
-    #[ManyToOne(targetEntity: Customer::class, inversedBy: 'features')]
+    #[ManyToOne(targetEntity: Customer::class, inversedBy: 'sales')]
     #[JoinColumn(name: 'customer_id', referencedColumnName: 'id')]
-    private Customer|null $contact = null;
+    private Customer|null $customer = null;
 
     public function __construct($name, $description, $price)
     {
         $this->name = $name;
         $this->description = $description;
         $this->price = $price;
+
+        $this->updatedTimestamps();
     }
 
     /**
@@ -101,16 +106,16 @@ class Sale
     /**
      * @return Customer|null
      */
-    public function getContact(): ?Customer
+    public function getCustomer(): ?Customer
     {
-        return $this->contact;
+        return $this->customer;
     }
 
     /**
-     * @param Customer|null $contact
+     * @param Customer|null $customer
      */
-    public function setContact(?Customer $contact): void
+    public function setCustomer(?Customer $customer): void
     {
-        $this->contact = $contact;
+        $this->customer = $customer;
     }
 }

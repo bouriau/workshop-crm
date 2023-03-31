@@ -4,18 +4,11 @@ declare(strict_types=1);
 
 namespace App\Model;
 
-use App\Entity\Prospect;
-use App\Model\AbstractContactInterface;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\ORM\Mapping\Id;
-use Doctrine\ORM\Mapping\JoinColumn;
-use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\MappedSuperclass;
-use Doctrine\ORM\Mapping\OneToMany;
 
-abstract class AbstractMessage
+#[MappedSuperclass]
+abstract class AbstractMessage implements MessageInterface
 {
     #[Column(type: "string", nullable: false)]
     protected string $subject;
@@ -23,16 +16,11 @@ abstract class AbstractMessage
     #[Column(type: "text", nullable: false)]
     protected string $message;
 
-    /**
-     * One Message has Many Responses.
-     */
-    #[OneToMany(mappedBy: 'parent', targetEntity: AbstractMessage::class)]
-    private Collection $responses;
-
-    /** Many Responses have One Parent Message. */
-    #[ManyToOne(targetEntity: AbstractMessage::class, inversedBy: 'children')]
-    #[JoinColumn(name: 'parent_id', referencedColumnName: 'id')]
-    private AbstractMessage|null $parent = null;
+    public function __construct(string $subject, string $message)
+    {
+        $this->subject = $subject;
+        $this->message = $message;
+    }
 
     /**
      * @return string
@@ -65,4 +53,5 @@ abstract class AbstractMessage
     {
         $this->message = $message;
     }
+
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Entity\Traits\TimestampableTrait;
 use App\Model\AbstractContact;
 use App\Repository\CustomerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -19,12 +20,14 @@ use Doctrine\ORM\Mapping\Table;
 #[Entity(repositoryClass: CustomerRepository::class)]
 class Customer extends AbstractContact
 {
+    use TimestampableTrait;
+
     #[Id]
     #[GeneratedValue]
     #[Column]
     private ?int $id = null;
 
-    #[OneToMany(mappedBy: 'customer', targetEntity: CustomerMessage::class)]
+    #[OneToMany(mappedBy: 'contact', targetEntity: CustomerMessage::class)]
     private Collection $messages;
 
     #[OneToMany(mappedBy: 'customer', targetEntity: Sale::class)]
@@ -34,6 +37,8 @@ class Customer extends AbstractContact
     {
         $this->messages = new ArrayCollection();
         $this->sales = new ArrayCollection();
+
+        $this->updatedTimestamps();
     }
 
     /**

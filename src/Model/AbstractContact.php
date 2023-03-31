@@ -3,7 +3,6 @@
 namespace App\Model;
 
 use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\MappedSuperclass;
 
 abstract class AbstractContact implements AbstractContactInterface
 {
