@@ -2,6 +2,8 @@
 
 
 {% block content %}
+
+
     <h1>Liste Customers</h1>
 
     <ul>
@@ -12,6 +14,20 @@
             <li>Email : {{ customer.email }}</li>
             <li>Tel : {{ customer.phone }}</li>
             <hr align="left" width="10%">
+            {# Mon commentaire
+            {% set sales = customer.getSales() %}
+            {% if sales is not empty %}
+                <ul>
+                    <h3>Ventes de la personne :</h3>
+                    {% for sale in sales %}
+                        <li>{{ sale.name }}</li>
+                        <li>{{ sale.description }}</li>
+                        <li>{{ sale.price }}</li>
+
+                    {% endfor %}
+                </ul>
+            {% endif %}
+           #}
         {% endfor %}
     </ul>
 {% endblock %}
