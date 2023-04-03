@@ -18,6 +18,9 @@ abstract class AbstractContact implements AbstractContactInterface
     #[Column(type: "string", nullable: true)]
     protected ?string $phone;
 
+    #[Column(type: "boolean", nullable: false, options: ['default' => true])]
+    protected bool $aLive = true;
+
     /**
      * @return string|null
      */
@@ -80,5 +83,15 @@ abstract class AbstractContact implements AbstractContactInterface
     public function setPhone(?string $phone): void
     {
         $this->phone = $phone;
+    }
+
+    public function isALive(): bool
+    {
+        return $this->aLive;
+    }
+
+    public function setALive($aLive): void
+    {
+        $this->aLive = $aLive;
     }
 }

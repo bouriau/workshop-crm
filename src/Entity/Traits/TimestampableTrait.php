@@ -10,10 +10,10 @@ use Doctrine\ORM\Mapping\PreUpdate;
 
 trait TimestampableTrait
 {
-    #[Column(name: 'created_at', type: 'datetime')]
+    #[Column(name: 'created_at', type: 'datetime', options: ["default" => "CURRENT_TIMESTAMP"])]
     private \DateTime $createdAt;
 
-    #[Column(name: 'updated_at', type: 'datetime')]
+    #[Column(name: 'updated_at', type: 'datetime', options: ["default" => "CURRENT_TIMESTAMP"])]
     private \DateTime $updatedAt;
 
     #[PrePersist]

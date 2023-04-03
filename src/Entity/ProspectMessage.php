@@ -48,6 +48,7 @@ class ProspectMessage extends AbstractMessage
     {
         parent::__construct($subject, $message);
 
+        $this->setCreatedAt(new \DateTime('now'));
         $this->updatedTimestamps();
     }
 

@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Lead;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -27,7 +28,9 @@ class LeadCrudController extends AbstractCrudController
             TextField::new('lastName'),
             TextField::new('phone'),
             EmailField::new('email'),
-            DateTimeField::new('createdAt')->onlyOnDetail(),
+            BooleanField::new('aLive'),
+            DateTimeField::new('createdAt')->hideOnForm(),
+            DateTimeField::new('updatedAt')->hideOnForm(),
         ];
     }
 }

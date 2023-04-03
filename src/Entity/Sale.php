@@ -44,6 +44,7 @@ class Sale
         $this->description = $description;
         $this->price = $price;
 
+        $this->setCreatedAt(new \DateTime('now'));
         $this->updatedTimestamps();
     }
 

@@ -44,8 +44,11 @@ class CustomerMessage extends AbstractMessage
     #[JoinColumn(name: 'parent_id', referencedColumnName: 'id')]
     protected CustomerMessage|null $parent = null;
 
-    public function __construct()
+    public function __construct(string $subject, string $message)
     {
+        parent::__construct($subject, $message);
+
+        $this->setCreatedAt(new \DateTime('now'));
         $this->updatedTimestamps();
     }
 
