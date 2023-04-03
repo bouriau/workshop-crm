@@ -38,6 +38,7 @@ class Customer extends AbstractContact
         $this->messages = new ArrayCollection();
         $this->sales = new ArrayCollection();
 
+        $this->setCreatedAt(new \DateTime('now'));
         $this->updatedTimestamps();
     }
 

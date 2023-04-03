@@ -35,12 +35,12 @@ interface AbstractContactInterface
     public function setEmail(?string $email): void;
 
     /**
-     * @return int|null
+     * @return string|null
      */
-    public function getPhone(): ?int;
+    public function getPhone(): ?string;
 
     /**
-     * @param int|null $phone
+     * @param string|null $phone
      */
-    public function setPhone(?int $phone): void;
+    public function setPhone(?string $phone): void;
 }

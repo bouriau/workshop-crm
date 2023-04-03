@@ -26,6 +26,12 @@ class Lead extends AbstractContact
 
     public function __construct()
     {
+        $this->setCreatedAt(new \DateTime('now'));
         $this->updatedTimestamps();
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 }

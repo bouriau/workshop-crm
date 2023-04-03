@@ -35,6 +35,7 @@ class Prospect extends AbstractContact
     {
         $this->messages = new ArrayCollection();
 
+        $this->setCreatedAt(new \DateTime('now'));
         $this->updatedTimestamps();
     }
 
