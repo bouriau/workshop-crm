@@ -17,9 +17,11 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
+use JetBrains\PhpStorm\Deprecated;
 
 #[Table]
 #[Entity(repositoryClass: ProspectMessageRepository::class)]
+#[Deprecated]
 class ProspectMessage extends AbstractMessage
 {
     use TimestampableTrait;
@@ -44,9 +46,9 @@ class ProspectMessage extends AbstractMessage
     #[JoinColumn(name: 'parent_id', referencedColumnName: 'id')]
     protected ProspectMessage|null $parent = null;
 
-    public function __construct($subject, $message)
+    public function __construct()
     {
-        parent::__construct($subject, $message);
+//        parent::__construct($subject, $message);
 
         $this->setCreatedAt(new \DateTime('now'));
         $this->updatedTimestamps();

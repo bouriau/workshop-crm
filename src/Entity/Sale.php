@@ -38,12 +38,8 @@ class Sale
     #[JoinColumn(name: 'customer_id', referencedColumnName: 'id')]
     private Customer|null $customer = null;
 
-    public function __construct($name, $description, $price)
+    public function __construct()
     {
-        $this->name = $name;
-        $this->description = $description;
-        $this->price = $price;
-
         $this->setCreatedAt(new \DateTime('now'));
         $this->updatedTimestamps();
     }

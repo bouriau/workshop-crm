@@ -6,20 +6,28 @@ namespace App\Model;
 
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\MappedSuperclass;
+use JetBrains\PhpStorm\Deprecated;
 
 #[MappedSuperclass]
+#[Deprecated]
 abstract class AbstractMessage implements MessageInterface
 {
     #[Column(type: "string", nullable: false)]
-    protected string $subject;
+    protected ?string $subject = null;
 
     #[Column(type: "text", nullable: false)]
-    protected string $message;
+    protected ?string $message = null;
 
-    public function __construct(string $subject, string $message)
+//    public function __construct(string $subject, string $message)
+//    {
+//        $this->subject = $subject;
+//        $this->message = $message;
+//    }
+
+
+    public function __toString(): string
     {
-        $this->subject = $subject;
-        $this->message = $message;
+        return $this->subject;
     }
 
     /**

@@ -3,7 +3,9 @@
 namespace App\Model;
 
 use Doctrine\Common\Collections\Collection;
+use JetBrains\PhpStorm\Deprecated;
 
+#[Deprecated]
 interface MessageInterface
 {
     /**

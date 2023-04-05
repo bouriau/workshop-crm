@@ -2,9 +2,13 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Action;
+use App\Entity\ActionType;
 use App\Entity\Customer;
 use App\Entity\Lead;
+use App\Entity\NoteType;
 use App\Entity\Prospect;
+use App\Entity\Sale;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -47,10 +51,17 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::subMenu('Contact', 'fa fa-article')->setSubItems([
-            MenuItem::linkToCrud('Lead', 'fas fa-list', Lead::class),
-            MenuItem::linkToCrud('Prospect', 'fas fa-list', Prospect::class),
-            MenuItem::linkToCrud('Customer', 'fas fa-list', Customer::class)
+        yield MenuItem::subMenu('Contact', 'fa fa-address-book')->setSubItems([
+            MenuItem::linkToCrud('Lead', 'fas fa-circle-info', Lead::class),
+            MenuItem::linkToCrud('Prospect', 'fas fa-message', Prospect::class),
+            MenuItem::linkToCrud('Customer', 'fas fa-sack-dollar', Customer::class)
         ]);
+        yield MenuItem::subMenu('Actions', 'fa fa-paper-plane')->setSubItems([
+            MenuItem::linkToCrud('Action', 'fas fa-bolt', Action::class),
+            MenuItem::linkToCrud('Action type', 'fas fa-tags', ActionType::class),
+            MenuItem::linkToCrud('Note type', 'fas fa-tags', NoteType::class)
+        ]);
+        yield MenuItem::linkToCrud('Sale', 'fa fa-cart-shopping', Sale::class);
+
     }
 }

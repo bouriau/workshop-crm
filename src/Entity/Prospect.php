@@ -28,15 +28,24 @@ class Prospect extends AbstractContact
     #[Column]
     private ?int $id = null;
 
-    #[OneToMany(mappedBy: 'contact', targetEntity: ProspectMessage::class)]
+    #[OneToMany(mappedBy: 'contact', targetEntity: ProspectMessage::class, cascade: ['persist'])]
     private Collection $messages;
+
+    #[OneToMany(mappedBy: 'prospect', targetEntity: Action::class, cascade: ['persist'])]
+    private Collection $actions;
 
     public function __construct()
     {
+        $this->actions = new ArrayCollection();
         $this->messages = new ArrayCollection();
 
         $this->setCreatedAt(new \DateTime('now'));
         $this->updatedTimestamps();
+    }
+
+    public function __toString(): string
+    {
+        return $this->firstname.' '.$this->lastname;
     }
 
     /**
@@ -67,5 +76,27 @@ class Prospect extends AbstractContact
     public function hasMessage(MessageInterface $message): bool
     {
         return $this->messages->contains($message);
+    }
+
+    public function getActions(): Collection
+    {
+        return $this->actions;
+    }
+
+    public function addAction(Action $action): void
+    {
+        $this->actions->add($action);
+    }
+
+    public function removeAction(Action $action): void
+    {
+        if ($this->actions->contains($action)) {
+            $this->actions->removeElement($action);
+        }
+    }
+
+    public function hasAction(Action $action): bool
+    {
+        return $this->actions->contains($action);
     }
 }
