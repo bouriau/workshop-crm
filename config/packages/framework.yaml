@@ -17,9 +17,6 @@ framework:
     #fragments: true
     php_errors:
         log: true
-        
-    profiler:
-        enabled: true
 
 when@test:
     framework:
