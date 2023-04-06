@@ -14,4 +14,33 @@ class ProspectRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Prospect::class);
     }
+
+    public function countAllProspect()
+    {
+        $contacts = $this->createQueryBuilder('a')
+                              ->select('count(a.id)')
+                              ->getQuery()
+                              ->getSingleScalarResult();
+        return $contacts;
+    }
+
+    public function countAllDeadProspect()
+    {
+        $contacts = $this->createQueryBuilder('a')
+                              ->select('count(a.id)')
+                              ->where('a.aLive = false')
+                              ->getQuery()
+                              ->getSingleScalarResult();
+        return $contacts;
+    }
+
+    public function countAllAliveProspect()
+    {
+        $contacts = $this->createQueryBuilder('a')
+                              ->select('count(a.id)')
+                              ->where('a.aLive = true')
+                              ->getQuery()
+                              ->getSingleScalarResult();
+        return $contacts;
+    }
 }

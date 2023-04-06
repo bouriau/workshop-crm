@@ -14,4 +14,33 @@ class LeadRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Lead::class);
     }
+
+    public function countAllLead()
+    {
+        $contacts = $this->createQueryBuilder('a')
+                              ->select('count(a.id)')
+                              ->getQuery()
+                              ->getSingleScalarResult();
+        return $contacts;
+    }
+
+    public function countAllDeadLead()
+    {
+        $contacts = $this->createQueryBuilder('a')
+                              ->select('count(a.id)')
+                              ->where('a.aLive = false')
+                              ->getQuery()
+                              ->getSingleScalarResult();
+        return $contacts;
+    }
+
+    public function countAllAliveLead()
+    {
+        $contacts = $this->createQueryBuilder('a')
+                              ->select('count(a.id)')
+                              ->where('a.aLive = true')
+                              ->getQuery()
+                              ->getSingleScalarResult();
+        return $contacts;
+    }
 }

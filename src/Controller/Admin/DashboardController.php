@@ -8,6 +8,9 @@ use App\Entity\Customer;
 use App\Entity\Lead;
 use App\Entity\NoteType;
 use App\Entity\Prospect;
+use App\Repository\LeadRepository;
+use App\Repository\ProspectRepository;
+use App\Repository\CustomerRepository;
 use App\Entity\Sale;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -18,26 +21,33 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController
 {
+    protected $leadRepository;
+    protected $prospectRepository;
+    protected $customerRepository;
+
+    public function __construct(
+        LeadRepository $leadRepository,
+        ProspectRepository $prospectRepository,
+        CustomerRepository $customerRepository
+        )
+    {
+        $this->leadRepository = $leadRepository;
+        $this->prospectRepository = $prospectRepository;
+        $this->customerRepository = $customerRepository;
+    }
+
     #[Route('/admin/{_locale}', name: 'admin')]
     public function index(): Response
     {
-//        return parent::index();
-
-        // Option 1. You can make your dashboard redirect to some common page of your backend
-        //
-         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-         return $this->redirect($adminUrlGenerator->setController(LeadCrudController::class)->generateUrl());
-
-        // Option 2. You can make your dashboard redirect to different pages depending on the user
-        //
-        // if ('jane' === $this->getUser()->getUsername()) {
-        //     return $this->redirect('...');
-        // }
-
-        // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
-        // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
-        //
-        // return $this->render('some/path/my-dashboard.html.twig');
+       return $this->render('bundles\EasyAdminBundle\page\content.html.twig',[
+        'countDeadLeads' => $this->leadRepository->countAllDeadLead(),
+        'countAliveLeads' => $this->leadRepository->countAllAliveLead(),
+        'countLeads' => $this->leadRepository->countAllLead(),
+        'countDeadProspects' => $this->prospectRepository->countAllDeadProspect(),
+        'countAliveProspects' => $this->prospectRepository->countAllAliveProspect(),
+        'countProspects' => $this->prospectRepository->countAllProspect(),
+        'countCustomers' => $this->customerRepository->countAllCustomer()
+       ]);
     }
 
     public function configureDashboard(): Dashboard
