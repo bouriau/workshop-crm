@@ -10,7 +10,7 @@ A [Docker](https://www.docker.com/)-based installer and runtime for the [Symfony
 2. Run `docker compose build --pull --no-cache` to build fresh images
 3. Run `docker compose up` (the logs will be displayed in the current shell)
 4. Open `https://localhost/login` 
-5. Enregistre toi avec le user "admin" et le mdp "adminPassword"
+5. Login with user "admin" and the password "adminPassword"
 6. Run `docker compose down --remove-orphans` to stop the Docker containers.
 
 ## Features
@@ -30,5 +30,5 @@ A [Docker](https://www.docker.com/)-based installer and runtime for the [Symfony
 ## Docs
 
 1. [More information about the docker](https://github.com/dunglas/symfony-docker)
-2. [Documentation du CRM](docs/crm.md)
+2. [Documentation about the CRM](docs/crm.md)
 
