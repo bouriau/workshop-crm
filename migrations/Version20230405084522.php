@@ -23,6 +23,7 @@ final class Version20230405084522 extends AbstractMigration
         $this->addSql('CREATE SEQUENCE admin_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE TABLE admin (id INT NOT NULL, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, role VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_880E0D76F85E0677 ON admin (username)');
+        $this->addSql('INSERT INTO admin (id, username, password, role) VALUES (1, \'admin\', \'$2y$13$NXeHm3EH1hdrDn1zM2rl/ujSjsv2YEplX2m7pZLX5ZBWKDQZdKpvS\', \'ROLE_ADMIN\');');
     }
 
     public function down(Schema $schema): void
