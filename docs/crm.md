@@ -55,7 +55,7 @@ La distinction du propect par rapport au lead ce situe au niveau des actions. Il
 
 ### Customer
 
-Un customer, ou client, reprends les principes de base d prospect. Cependant il est possible de conclure ou d'ajouter une vente un client, ce qui n'est pas le cas pour un prospect.
+Un customer, ou client, reprends les principes de base du prospect. Cependant il est possible de conclure ou d'ajouter une vente à un client, ce qui n'est pas le cas pour un prospect.
 
 ## Actions
 
